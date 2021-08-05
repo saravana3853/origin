@@ -18,7 +18,7 @@ jobs:
           command: rm -rf /tmp/code/origin && mkdir -p /tmp/code/ && cd /tmp/code
       - run:
           name: code_checkout
-          command: git clone https://github.com/saravana3853/origin.git
+          command: git clone https://saravana3853:githubL0g!n@github.com/saravana3853/origin.git
       - run:
           name: change_master
           command: cd /tmp/code/origin && git fetch && git checkout master
