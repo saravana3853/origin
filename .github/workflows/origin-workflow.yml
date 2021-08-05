@@ -36,3 +36,19 @@ jobs:
           # Runs a set of commands using the runners shell
           name: origin-server-${{ github.run_number }}
           path: ~/artifacts/origin-1.0-SNAPSHOT.jar
+  docker:
+    name: Publish - Docker Hub
+      runs-on: ubuntu-latest
+      env:
+        REPO: ${{ secrets.DOCKER_REPO }}
+      steps:
+        - uses: actions/checkout@v2
+        - name: Build
+          run: cd $GITHUB_WORKSPACE && mvn clean install
+        - name: Login to Docker Hub
+          run: docker login -u ${{ secrets.DOCKER_USER }}
+            -p ${{ secrets.DOCKER_PASS }}
+        - name: Build Docker image
+          run: cd $GITHUB_WORKSPACE && docker build -t $REPO:latest -t $REPO:${GITHUB_SHA::8} .
+        - name: Publish Docker image
+          run: docker push $REPO
