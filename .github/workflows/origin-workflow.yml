@@ -32,4 +32,4 @@ jobs:
         with:
           # Runs a set of commands using the runners shell
           name: Publish Artifact
-          run: $GITHUB_WORKSPACE/target/origin-1.0-SNAPSHOT.jar
+          path: $GITHUB_WORKSPACE/target/origin-1.0-SNAPSHOT.jar
