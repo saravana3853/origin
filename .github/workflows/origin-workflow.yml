@@ -28,9 +28,9 @@ jobs:
       # Runs a single command using the runners shell
       - name: Build
         run: cd $GITHUB_WORKSPACE && mvn clean install
-      - run: ls $GITHUB_WORKSPACE
+      - run: ls $GITHUB_WORKSPACE/target
       - uses: actions/upload-artifact@v2
         with:
           # Runs a set of commands using the runners shell
-          name: artificact
-          path: $GITHUB_WORKSPACE/target/origin-1.0-SNAPSHOT.jar
+          name: origin-server
+          path: $GITHUB_WORKSPACE/target/
