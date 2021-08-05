@@ -27,8 +27,8 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Build
-        run: cd $GITHUB_WORKSPACE/origin && mvn clean install
+        run: cd $GITHUB_WORKSPACE && mvn clean install
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
-        run: cd $GITHUB_WORKSPACE/origin && java -jar target/origin-1.0-SNAPSHOT.jar
+        run: cd $GITHUB_WORKSPACE && java -jar target/origin-1.0-SNAPSHOT.jar
