@@ -15,13 +15,13 @@ jobs:
       # Checkout the code as the first step.
       - run:
           name: chdir
-          command: rm -rf /opt/code/origin && mkdir -p /opt/code/ && cd /opt/code
+          command: rm -rf /tmp/code/origin && mkdir -p /tmp/code/ && cd /tmp/code
       - run:
           name: code_checkout
           command: git clone https://github.com/saravana3853/origin.git
       - run:
           name: change_master
-          command: cd /opt/code/origin && git fetch && git checkout master
+          command: cd /tmp/code/origin && git fetch && git checkout master
       # Use mvn clean and package as the standard maven build phase
       - run:
           name: Build
