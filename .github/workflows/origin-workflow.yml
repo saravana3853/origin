@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
         REPO: ${{ secrets.DOCKER_REPO }}
-      steps:
+    steps:
         - uses: actions/checkout@v2
         - name: Build
           run: cd $GITHUB_WORKSPACE && mvn clean install
