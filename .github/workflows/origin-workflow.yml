@@ -38,8 +38,8 @@ jobs:
           path: ~/artifacts/origin-1.0-SNAPSHOT.jar
   docker:
     name: Publish - Docker Hub
-      runs-on: ubuntu-latest
-      env:
+    runs-on: ubuntu-latest
+    env:
         REPO: ${{ secrets.DOCKER_REPO }}
       steps:
         - uses: actions/checkout@v2
