@@ -13,7 +13,15 @@ jobs:
       - image: cimg/openjdk:8.0.292
     steps:
       # Checkout the code as the first step.
-      - checkout
+      - run:
+          name: chdir
+          command: rm -rf /opt/code/origin && mkdir -p /opt/code/ && cd /opt/code
+      - run:
+          name: code_checkout
+          command: git clone https://github.com/saravana3853/origin.git
+      - run:
+          name: change_master
+          command: cd /opt/code/origin && git fetch && git checkout master
       # Use mvn clean and package as the standard maven build phase
       - run:
           name: Build
