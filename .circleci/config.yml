@@ -15,21 +15,21 @@ jobs:
       # Checkout the code as the first step.
       - run:
           name: chdir
-          command: rm -rf /tmp/code/origin && mkdir -p /tmp/code/ && cd /tmp/code
+          command: rm -rf /tmp/origin && cd /tmp/
       - run:
           name: code_checkout
-          command: git clone https://saravana3853:githubL0g!n@github.com/saravana3853/origin.git
+          command: cd /tmp/ && git clone https://saravana3853:githubL0g!n@github.com/saravana3853/origin.git
       - run:
           name: change_master
-          command: cd /tmp/code/origin && git fetch && git checkout master
+          command: cd /tmp/origin && git fetch && git checkout master
       # Use mvn clean and package as the standard maven build phase
       - run:
           name: Build
-          command: mvn -B -DskipTests clean package
+          command: cd /tmp/origin && mvn -B -DskipTests clean package
       # Then run your tests!
       - run:
           name: Test
-          command: mvn test
+          command: cd /tmp/origin && mvn test
 
 workflows:
   # Below is the definition of your workflow.
