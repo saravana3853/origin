@@ -51,60 +51,6 @@ public class OriginMain extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
         SpringApplication.run(OriginMain.class, args);
-
-        String expression = "foobar > 99 ? foobar :99";
-
-        Map vars = new HashMap();
-        vars.put("foobar", new Integer(100));
-
-        // We know this expression should return a boolean.
-        Integer result = (Integer) MVEL.eval(expression, vars);
-        System.out.println(result);
-
-        List<Range> scores = new ArrayList<>();
-
-        Range range = new Range();
-        range.setLower(200000l);
-        range.setUpper(500000l);
-        range.setScore(-1);
-
-        scores.add(range);
-
-        Range range2 = new Range();
-        range2.setLower(1l);
-        range2.setUpper(199999l);
-        range2.setScore(0);
-
-        scores.add(range2);
-
-        RangeBasedRuleVariables variables = new RangeBasedRuleVariables();
-        variables.setVarName("income");
-        variables.setVarType("range");
-        variables.setScores(scores);
-
-        Gson gson = new Gson();
-        String jsonStr=gson.toJson(variables);
-        System.out.println(jsonStr);
-
-        Map<String,Integer> list = variables.toMvelExpression();
-        System.out.println(list);
-
-        UserDetails userDetails = new UserDetails();
-        userDetails.setIncome(100000l);
-        for (String expr: list.keySet()) {
-            System.out.println("("+expr+"):"+MVEL.eval(expr,userDetails));
-        }
-
-        Map<Boolean,Integer> booleanVariables = new HashMap<>();
-        booleanVariables.put(Boolean.TRUE,-1);
-        booleanVariables.put(Boolean.FALSE,0);
-
-        BooleanBasedRuleVariables booleanBasedRuleVariables = new BooleanBasedRuleVariables();
-        booleanBasedRuleVariables.setVarName("married");
-        booleanBasedRuleVariables.setVarType("boolean");
-        booleanBasedRuleVariables.setScores(booleanVariables);
-
-        System.out.println(new Gson().toJson(booleanBasedRuleVariables));
     }
 
     @Bean
